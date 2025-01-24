@@ -1,12 +1,12 @@
 .Screen {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     height: 100%;
-    /*width: 100vh;*/
-    background-color: var(--background-color);
     color: white;
+    gap: 1rem;
+    padding: 2rem 0;
 }
 
 .active {

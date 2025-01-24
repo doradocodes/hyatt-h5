@@ -28,6 +28,8 @@ export function SplashPage() {
     return (
         <div className="page">
             <motion.div
+                // className={styles.wrapper}
+                style={{ width: '100%', height: '100vh', padding: '1rem' }}
                 key={activeScreen}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
