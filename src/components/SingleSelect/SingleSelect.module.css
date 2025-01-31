@@ -1,0 +1,23 @@
+.selectChoice {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /*gap: 0.5rem;*/
+}
+
+.option {
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    font-size: 90%;
+    transition: all 0.25s ease-out;
+    cursor: pointer;
+}
+
+.option input {
+    display: none;
+}
+
+.option[data-selected="true"] {
+    padding: 0.4rem 1rem;
+    background-color: rgba(0,0,0,0.3);
+}

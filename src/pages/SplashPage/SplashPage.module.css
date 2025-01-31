@@ -1,0 +1,21 @@
+.page {
+    backdrop-filter: blur(40px);
+}
+
+.intro {
+    background-image: url('./Background.png');
+    background-position: center;
+    background-size: cover;
+    /*border-radius: 50%;*/
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    clip-path: circle(20% at 50% 50%);
+}
+
+.buttonWrapper {
+    width: 100%;
+}
+

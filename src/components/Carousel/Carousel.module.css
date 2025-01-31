@@ -1,0 +1,40 @@
+.Carousel {
+
+}
+
+.SlidesWrapper {
+    display: flex;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    width: 100%;
+    gap: 1rem;
+}
+
+.Slide {
+    text-align: left;
+    width: 100%;
+    flex: 0 0 100%;
+}
+
+.indicator {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 1rem;
+}
+
+.dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 1rem;
+    background: #BFBFBF;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+
+.dot[data-active="true"] {
+    background: white;
+    width: 10px;
+}
+
+
