@@ -1,0 +1,46 @@
+.Grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+    justify-content: center;
+    justify-items: center;
+    width: 100%;
+}
+
+.Tile {
+    background: var(--popup-background);
+    width: 100%;
+    height: 15vh;
+    max-width: 15vh;
+    border-radius: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.ProgressBar {
+    width: 100%;
+    max-width: 15vh;
+    height: 0.5rem;
+    background: var(--popup-background);
+    border-radius: 1rem;
+    position: relative;
+    margin: 1rem 0;
+    overflow: hidden;
+}
+
+.Progress {
+    width: 5px;
+    height: 100%;
+    background: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.Mood {
+    opacity: 0;
+    z-index: -1;
+}

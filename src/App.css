@@ -26,7 +26,33 @@ nav {
     align-items: center;
 }
 
-.popup {
+.header {
+    position: absolute;
+    top: 10vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+.header > *:nth-child(1) {
+    justify-self: start;
+}
+
+.header > *:nth-child(3) {
+    justify-self: end;
+}
+
+.header .logo {
+    grid-column: 2 / span 1;
+    justify-self: center;
+}
+
+.screen {
     position: absolute;
     top: 0;
     left: 0;
@@ -36,18 +62,21 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 2rem;
+    overflow: hidden;
 }
 
-.popup > * {
-    border: 1.5px solid #BFBFBF;
-    background: rgba(0,0,0,0.25);
-    width: 80%;
+.popup .popup-content {
+    margin: 0 auto;
+    border: var(--popup-border);
+    background: var(--popup-background);
+    /*width: 80%;*/
     /*height: 60%;*/
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 2rem;
     gap: 2rem;
 

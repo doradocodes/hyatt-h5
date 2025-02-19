@@ -1,5 +1,7 @@
 :root {
   --background-color: #282c34;
+  --popup-background: rgba(0, 0, 0, 0.2);
+  --popup-border: 1.5px solid #BFBFBF;
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -17,7 +19,6 @@
 
 * {
     box-sizing: border-box;
-
 }
 
 a {
@@ -53,19 +54,13 @@ button {
   display: block;
 }
 
-
-/*@media (prefers-color-scheme: light) {*/
-/*  :root {*/
-/*    color: #213547;*/
-/*    background-color: #ffffff;*/
-/*  }*/
-/*  a:hover {*/
-/*    color: #747bff;*/
-/*  }*/
-/*  button {*/
-/*    background-color: #f9f9f9;*/
-/*  }*/
-/*}*/
+img {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
 
 .logo {
   background-image: url('./Logo.png');
