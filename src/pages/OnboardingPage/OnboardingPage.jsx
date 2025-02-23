@@ -1,9 +1,9 @@
 import {useLanguageStore} from "../../state/languageStore.js";
 import copy from "../../locale/copy.js";
-import Carousel from "../../components/Carousel/Carousel.jsx";
 import React from "react";
 import BackButton from "../../components/BackButton/BackButton.jsx";
-
+import Slideshow from "../../components/Slideshow/Slideshow.jsx";
+import {OnboardingSlide} from "../../components/OnboardingSlide/OnboardingSlide.jsx";
 
 export function OnboardingPage() {
     const language = useLanguageStore(state => state.language);
@@ -17,8 +17,10 @@ export function OnboardingPage() {
         <div className="screen">
             <div className="popup">
                 <div className="popup-content">
-                    <Carousel
-                        slides={copy[language].onboardingPage.intro.carousel}
+                    <Slideshow
+                        items={copy[language].onboardingPage.intro.slideshow}
+                        slideComponent={OnboardingSlide}
+                        isTopIndicator={true}
                     />
                 </div>
             </div>

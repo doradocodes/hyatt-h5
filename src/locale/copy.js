@@ -7,7 +7,7 @@ export default {
         },
         onboardingPage: {
             intro: {
-                carousel: [
+                slideshow: [
                     {
                         image: "/images/mood-selection-1.jpg",
                         title: "1. Begin your meditation journey with us",
@@ -50,6 +50,7 @@ export default {
                 body: 'Choose your desired mental state',
                 slideshow: [
                     {
+                        isRecommended: true,
                         id: 'deep-sleep',
                         image: MindSelectionPlaceholderImage,
                         title: 'Deep Sleep',

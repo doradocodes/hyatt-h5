@@ -63,7 +63,13 @@ nav {
     justify-content: center;
     align-items: center;
     padding: 2rem;
+    gap: 1rem;
     overflow: hidden;
+}
+
+.popup {
+    overflow: hidden;
+    border-radius: 2rem;
 }
 
 .popup .popup-content {
@@ -83,4 +89,8 @@ nav {
     /*will-change: transform, backdrop-filter;*/
     /*transform: translateZ(0);*/
     /*backdrop-filter: blur(8px);*/
+}
+
+.use-spring-carousel-track-wrapper {
+    align-items: flex-end;
 }

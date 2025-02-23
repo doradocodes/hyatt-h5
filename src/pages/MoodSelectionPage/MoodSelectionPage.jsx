@@ -1,6 +1,5 @@
 import {useLanguageStore} from "../../state/languageStore.js";
 import copy from "../../locale/copy.js";
-import Carousel from "../../components/Carousel/Carousel.jsx";
 import React, {useEffect, useRef, useState} from "react";
 import BackButton from "../../components/BackButton/BackButton.jsx";
 import styles from "./MoodSelectionPage.module.css";

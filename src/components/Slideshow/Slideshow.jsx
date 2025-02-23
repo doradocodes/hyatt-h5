@@ -1,19 +1,26 @@
 import styles from './Slideshow.module.css';
-import {Link} from "react-router-dom";
 import {useSpringCarousel} from "react-spring-carousel";
 import {useState} from "react";
+import classNames from "classnames";
 
-export default function Slideshow({ items = [] }) {
+export default function Slideshow({ items = [], slideComponent, isTopIndicator = false }) {
+    const ComponentRender = slideComponent;
     const [activeSlide, setActiveSlide] = useState(0);
     const {
         carouselFragment,
         getCurrentActiveItem,
         useListenToCustomEvent,
+        slideToNextItem,
+        slideToPrevItem,
     } = useSpringCarousel({
         gutter: 15,
         items: items.map(item => ({
             id: item.id,
-            renderItem: <Slide data={item} />
+            renderItem: <ComponentRender
+                data={item}
+                slideToNextItem={() => slideToNextItem()}
+                slideToPrevItem={() => slideToPrevItem()}
+            />
         }))
     });
 
@@ -26,7 +33,7 @@ export default function Slideshow({ items = [] }) {
     return (
         <div className={styles.Slideshow}>
             {carouselFragment}
-            <div className={styles.indicator}>
+            <div className={classNames(styles.indicator, { [styles.indicatorTopAligned]: isTopIndicator })}>
                 {items.map((_, i) =>
                     <div
                         key={i}
@@ -38,14 +45,3 @@ export default function Slideshow({ items = [] }) {
     );
 }
 
-const Slide = ({data}) => {
-    return <div className={styles.SlideContentWrapper}>
-        <img className={styles.SlideImage} src={data.image} alt={data.title}/>
-        <div className={styles.SlideContent}>
-            <h3>Brainwave | {data.type}</h3>
-            <h2>{data.title}</h2>
-            <p>{data.body}</p>
-            {data.link && <Link to={data.link}>{data.cta}</Link>}
-        </div>
-    </div>
-}

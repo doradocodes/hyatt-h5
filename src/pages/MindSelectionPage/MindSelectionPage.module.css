@@ -1,0 +1,15 @@
+.TitleWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin: 1em;
+    width: 100%;
+}
+
+.Title {
+    margin: 0;
+}
+
+.Body {
+    margin: 0;
+}
