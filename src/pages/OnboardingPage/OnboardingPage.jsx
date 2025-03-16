@@ -15,15 +15,11 @@ export function OnboardingPage() {
             <div className="logo"></div>
         </div>
         <div className="screen">
-            <div className="popup">
-                <div className="popup-content">
-                    <Slideshow
-                        items={copy[language].onboardingPage.intro.slideshow}
-                        slideComponent={OnboardingSlide}
-                        isTopIndicator={true}
-                    />
-                </div>
-            </div>
+            <Slideshow
+                items={copy[language].onboardingPage.intro.slideshow}
+                slideComponent={OnboardingSlide}
+                isTopIndicator={true}
+            />
         </div>
     </div>
 }

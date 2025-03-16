@@ -13,21 +13,30 @@
 }
 
 .SlideContent {
-    /*padding: 2rem;*/
+    height: 100%;
+    margin-bottom: 3rem;
 }
 
 .SlideImage {
     width: 100%;
-    height: 100%;
+    /*height: 100%;*/
     object-fit: cover;
 }
 
 .Slide h2 {
     margin: 0;
+    font-size: 1.25rem;
+}
+
+.Slide p {
+    font-size: 0.8rem;
 }
 
 .CTA__active {
+    position: absolute;
+    bottom: 0;
     transition: all 0.3s ease-out;
-    background: white;
-    color: black;
+    background: transparent;
+    border: 2px solid var(--button-background-color);
+    color: var(--button-background-color);
 }

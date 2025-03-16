@@ -1,27 +1,26 @@
-import MindSelectionPlaceholderImage from './../assets/MindSelection_placeholder.png';
 export default {
     en: {
         splashPage: {
-            intro: "Welcome. Tune into a deeper sense of calm as our meditation experience aligns with the natural rhythm of your brainwaves, guiding you toward relaxation and balance.",
+            intro: "Welcome to Hyatt’s meditation experience. Find your calm, right here.",
             CTA: "Start the journey"
         },
         onboardingPage: {
             intro: {
                 slideshow: [
                     {
-                        image: "/images/mood-selection-1.jpg",
+                        image: "/images/Onboarding_Intro1.png",
                         title: "1. Begin your meditation journey with us",
                         body: "Simple steps to a peaceful experience here. Start your meditation session by selecting the right mindset and music. Let’s get you relaxed and focused.",
                         cta: 'Next'
                     },
                     {
-                        image: "/images/mood-selection-2.jpg",
+                        image: "/images/Onboarding_Intro2.png",
                         title: "2. Select your desire mindset & music",
                         body: "Choose your desired mental state. Pick the mindset that fits your current mood whether you want to relax, focus, or prepare for a restful sleep.",
                         cta: 'Next'
                     },
                     {
-                        image: "/images/mood-selection-2.jpg",
+                        image: "/images/Onboarding_Intro3.png",
                         title: "3. Share your journey with others",
                         body: "Capture and share your meditation moments! Visualize your brainwave activity with music and post it on social media to inspire others to find peace.",
                         cta: 'Start the journey',
@@ -52,7 +51,7 @@ export default {
                     {
                         isRecommended: true,
                         id: 'deep-sleep',
-                        image: MindSelectionPlaceholderImage,
+                        // image: MindSelectionPlaceholderImage,
                         title: 'Deep Sleep',
                         type: 'Delta',
                         body: `
@@ -63,7 +62,7 @@ export default {
                     },
                     {
                         id: 'deep-sleep',
-                        image: MindSelectionPlaceholderImage,
+                        // image: MindSelectionPlaceholderImage,
                         title: 'Deep Sleep',
                         type: 'Alpha',
                         body: `
@@ -74,7 +73,7 @@ export default {
                     },
                     {
                         id: 'deep-sleep',
-                        image: MindSelectionPlaceholderImage,
+                        // image: MindSelectionPlaceholderImage,
                         title: 'Deep Sleep',
                         type: 'Theta',
                         body: `

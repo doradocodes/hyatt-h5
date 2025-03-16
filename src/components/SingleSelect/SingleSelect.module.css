@@ -11,6 +11,7 @@
     font-size: 90%;
     transition: all 0.25s ease-out;
     cursor: pointer;
+    color: var(--button-background-color);
 }
 
 .option input {
@@ -19,5 +20,6 @@
 
 .option[data-selected="true"] {
     padding: 0.4rem 1rem;
-    background-color: rgba(0,0,0,0.3);
+    background-color: var(--button-background-color);
+    color: white;
 }

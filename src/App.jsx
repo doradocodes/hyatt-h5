@@ -4,7 +4,7 @@ import './App.css';
 import {SplashPage} from "./pages/SplashPage/SplashPage.jsx";
 import {MoodSelectionPage} from "./pages/MoodSelectionPage/MoodSelectionPage.jsx";
 import {MindSelectionPage} from "./pages/MindSelectionPage/MindSelectionPage.jsx";
-import {MeditationSessionPage} from "./pages/MeditationSessionPage.jsx";
+import {MeditationSessionPage} from "./pages/MeditationSessionPage/MeditationSessionPage.jsx";
 import {SharePage} from "./pages/SharePage.jsx";
 import {OnboardingPage} from "./pages/OnboardingPage/OnboardingPage.jsx";
 
@@ -34,7 +34,7 @@ function App() {
                     <Route path="/onboarding" element={<OnboardingPage />} />
                     <Route path="/mood-selection" element={<MoodSelectionPage/>} />
                     <Route path="/mind-selection" element={<MindSelectionPage/>} />
-                    <Route path="/meditation-session" element={<MeditationSessionPage/>} />
+                    <Route path="/meditation-session/:id" element={<MeditationSessionPage/>} />
                     <Route path="/share" element={<SharePage/>} />
                 </Routes>
             </motion.div>

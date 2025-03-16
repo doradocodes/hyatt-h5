@@ -18,6 +18,7 @@ export function SplashPage() {
     const screen1Ref = useRef(null);
     const logoRef = useRef(null);
     const popupContentRef = useRef(null);
+    const CTAref = useRef(null);
 
     useEffect(() => {
         const timeline = gsap.timeline({
@@ -68,13 +69,13 @@ export function SplashPage() {
             opacity: 1,
             duration: 1,
         }, '<');
-        timeline.fromTo(popupContentRef.current, {
-            backdropFilter: 'blur(0px)',
+        timeline.fromTo(CTAref.current, {
+            opacity: 0,
+            duration: 1,
         }, {
-            backdropFilter: 'blur(8px)',
-            duration: 0.5,
-        })
-
+            opacity: 1,
+            duration: 1,
+        });
     }, []);
 
     return <div key={1} className={classNames('page', styles.page)} ref={pageRef}>
@@ -87,9 +88,11 @@ export function SplashPage() {
         </div>
 
         <div className="screen" ref={screen1Ref}>
-            <div className="popup">
-                <div className="popup-content" ref={popupContentRef}>
-                    <p>{copy[language].splashPage.intro}</p>
+            <div className={styles.contentWrapper}>
+                <h1 className={styles.contentTitle}>
+                    {copy[language].splashPage.intro}
+                </h1>
+                <div ref={CTAref} className={styles.contentWrapper}>
                     <SingleSelect
                         options={[
                             {label: 'English', value: 'en'},
@@ -103,9 +106,9 @@ export function SplashPage() {
                         <Link to={'/onboarding'}>
                             <button>{copy[language].splashPage.CTA}</button>
                         </Link>
-
                     </div>
                 </div>
+
             </div>
         </div>
 

@@ -3,15 +3,12 @@
     position: relative;
 }
 
-
-
 .indicator {
     display: flex;
     justify-content: center;
     gap: 5px;
-    position: absolute;
-    bottom: -1rem;
     width: 100%;
+    margin-top: 0.5rem;
 }
 
 .indicatorTopAligned {
@@ -23,18 +20,20 @@
     width: 5px;
     height: 5px;
     border-radius: 1rem;
-    background: #BFBFBF;
+    background: var(--primary-color);
+    opacity: 0.5;
     cursor: pointer;
     transition: all 0.3s ease-out;
 }
 
 .dot[data-active="true"] {
-    background: white;
+    background: var(--primary-color);
+    opacity: 1;
     width: 10px;
 }
 
 .CTA__active {
     transition: all 0.3s ease-out;
-    background: white;
-    color: black;
+    /*background: white;*/
+    /*color: black;*/
 }
