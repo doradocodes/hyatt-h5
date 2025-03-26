@@ -1,5 +1,6 @@
 import styles from './MindSelectionSlide.module.css';
 import {Link} from "react-router-dom";
+import ChevronRightIcon from './../../assets/Chevron_Right.svg';
 
 export const MindSelectionSlide = ({data}) => {
     return <div className={styles.Slide}>
@@ -11,8 +12,10 @@ export const MindSelectionSlide = ({data}) => {
                 <div className={styles.SlideContent}>
                     <h3>Brainwave | {data.type}</h3>
                     <h2>{data.title}</h2>
-                    <p>{data.body}</p>
-                    {data.link && <Link to={data.link}>{data.cta}</Link>}
+                    {/*<p>{data.body}</p>*/}
+                    {data.link && <Link className={styles.SlideCTA} to={data.link}>
+                        >
+                    </Link>}
                 </div>
             </Link>
         </div>

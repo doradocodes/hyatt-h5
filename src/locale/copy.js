@@ -31,7 +31,7 @@ export default {
         },
         moodSelectionPage: {
             intro: {
-                title: '1. Mood Selection',
+                title: 'Mood Selection',
                 body: 'Choose your current feeling',
             },
             moods: {
@@ -41,11 +41,13 @@ export default {
                 relaxed: 'Relaxed',
                 anxious: 'Anxious',
                 stressed: 'Stressed',
-            }
+                tired: 'Tired',
+            },
+            moodSelectionProgress: 'Generating recommended session based on your selection...',
         },
         mindSelectionPage: {
             intro: {
-                title: '2. Mind Selection',
+                title: 'Mind Selection',
                 body: 'Choose your desired mental state',
                 slideshow: [
                     {
@@ -54,6 +56,7 @@ export default {
                         // image: MindSelectionPlaceholderImage,
                         title: 'Deep Sleep',
                         type: 'Delta',
+                        link: '/meditation-session',
                         body: `
                         #SleepJourney
                         #RestfulNights

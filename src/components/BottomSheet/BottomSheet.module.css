@@ -1,0 +1,9 @@
+.BottomSheet {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    min-height: 60vh;
+    background: white;
+    border-radius: 1rem;
+    padding: 1rem;
+}

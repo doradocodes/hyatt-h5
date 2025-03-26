@@ -1,5 +1,6 @@
 import {Link} from "react-router-dom";
 import styles from './OnboardingSlide.module.css';
+import classNames from "classnames";
 
 export const OnboardingSlide = ({ data, slideToNextItem, slideToPrevItem }) => {
     return <div className={styles.Slide}>
@@ -13,7 +14,7 @@ export const OnboardingSlide = ({ data, slideToNextItem, slideToPrevItem }) => {
                 <Link to={data.link}>
                     <button
                         onClick={slideToNextItem}
-                        className={styles.CTA__active}
+                        className={classNames(styles.CTA__active, styles.CTA__link)}
                     >{data.cta}</button>
                 </Link>
                 :

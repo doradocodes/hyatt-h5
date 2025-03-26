@@ -40,3 +40,8 @@
     border: 2px solid var(--button-background-color);
     color: var(--button-background-color);
 }
+
+.CTA__link {
+    background: var(--button-background-color);
+    color: white;
+}
