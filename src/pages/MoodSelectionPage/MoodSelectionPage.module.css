@@ -37,10 +37,8 @@
 
 .Tile:after {
     content: '';
-    background-image: url("/Chevron_Right.svg");
+    background-image: url("/icons/chevron-right.svg");
     background-size: contain;
-    transform: rotate(180deg);
-    filter: invert(1);
     width: 2rem;
     height: 2rem;
     position: absolute;

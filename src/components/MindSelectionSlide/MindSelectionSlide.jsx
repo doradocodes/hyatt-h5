@@ -1,6 +1,5 @@
 import styles from './MindSelectionSlide.module.css';
 import {Link} from "react-router-dom";
-import ChevronRightIcon from './../../assets/Chevron_Right.svg';
 
 export const MindSelectionSlide = ({data}) => {
     return <div className={styles.Slide}>
