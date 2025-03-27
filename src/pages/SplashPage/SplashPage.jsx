@@ -46,37 +46,6 @@ export function SplashPage() {
                 introRef.current.style.display = 'none';
             }
         });
-
-        // // fade out logo
-        // timeline.to(logoRef.current, {
-        //     opacity: 0,
-        //     duration: 0.3,
-        // });
-        //
-        //
-        // // fade in screen 1
-        // timeline.fromTo(screen1Ref.current, {
-        //     opacity: 0,
-        //     duration: 1,
-        // }, {
-        //     delay: 1,
-        //     opacity: 1,
-        //     duration: 1,
-        // });
-        // timeline.fromTo(headerRef.current, {
-        //     opacity: 0,
-        //     duration: 1,
-        // }, {
-        //     opacity: 1,
-        //     duration: 1,
-        // }, '<');
-        // timeline.fromTo(CTAref.current, {
-        //     opacity: 0,
-        //     duration: 1,
-        // }, {
-        //     opacity: 1,
-        //     duration: 1,
-        // });
     }, []);
 
     return <div key={1} className={classNames('page')} ref={pageRef}>
