@@ -7,9 +7,41 @@ import {MindSelectionPage} from "./pages/MindSelectionPage/MindSelectionPage.jsx
 import {MeditationSessionPage} from "./pages/MeditationSessionPage/MeditationSessionPage.jsx";
 import {SharePage} from "./pages/SharePage.jsx";
 import {OnboardingPage} from "./pages/OnboardingPage/OnboardingPage.jsx";
+import {useEffect} from "react";
 
 function App() {
     const location = useLocation(); // Get the current route location
+
+    useEffect(() => {
+        /* Get the documentElement (<html>) to display the page in fullscreen */
+        const elem = document.documentElement;
+
+        /* View in fullscreen */
+        function openFullscreen() {
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { /* Safari */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE11 */
+                elem.msRequestFullscreen();
+            }
+        }
+
+        /* Close fullscreen */
+        function closeFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) { /* Safari */
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { /* IE11 */
+                document.msExitFullscreen();
+            }
+        }
+
+        openFullscreen();
+    }, []);
+
+
 
     return (
         <>
