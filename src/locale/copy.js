@@ -53,37 +53,38 @@ export default {
                     {
                         isRecommended: true,
                         id: 'deep-sleep',
-                        // image: MindSelectionPlaceholderImage,
+                        image: '/images/MindSelection_DeepSleep.png',
                         title: 'Deep Sleep',
                         type: 'Delta',
                         link: '/meditation-session',
-                        body: `
-                        #SleepJourney
-                        #RestfulNights
-                        #SleepInDelta
-                        `,
                     },
                     {
-                        id: 'deep-sleep',
-                        // image: MindSelectionPlaceholderImage,
-                        title: 'Deep Sleep',
-                        type: 'Alpha',
-                        body: `
-                        #SleepJourney
-                        #RestfulNights
-                        #SleepInDelta
-                        `,
-                    },
-                    {
-                        id: 'deep-sleep',
-                        // image: MindSelectionPlaceholderImage,
-                        title: 'Deep Sleep',
+                        id: 'recharge',
+                        image: '/images/MindSelection_Recharge.png',
+                        title: 'Recharge',
                         type: 'Theta',
-                        body: `
-                        #SleepJourney
-                        #RestfulNights
-                        #SleepInDelta
-                        `,
+                        link: '/meditation-session',
+                    },
+                    {
+                        id: 'focus',
+                        image: '/images/MindSelection_Focus.png',
+                        title: 'Focus',
+                        type: 'Beta',
+                        link: '/meditation-session',
+                    },
+                    {
+                        id: 'meditation',
+                        image: '/images/MindSelection_Meditation.png',
+                        title: 'Meditation',
+                        type: 'Alpha',
+                        link: '/meditation-session',
+                    },
+                    {
+                        id: 'energize',
+                        image: '/images/MindSelection_Energize.png',
+                        title: 'Energize',
+                        type: 'Gamma',
+                        link: '/meditation-session',
                     },
                 ]
             },

@@ -14,7 +14,7 @@ export const MindSelectionSlide = ({data}) => {
                     <h2>{data.title}</h2>
                     {/*<p>{data.body}</p>*/}
                     {data.link && <Link className={styles.SlideCTA} to={data.link}>
-                        >
+                        <img src="/icons/chevron-right.svg" alt="Next"/>
                     </Link>}
                 </div>
             </Link>

@@ -3,7 +3,7 @@ import {useSpringCarousel} from "react-spring-carousel";
 import {useState} from "react";
 import classNames from "classnames";
 
-export default function Slideshow({ items = [], slideComponent, isTopIndicator = false }) {
+export default function Slideshow({ items = [], slideComponent, showIndicator = true, alignBottom = false }) {
     const ComponentRender = slideComponent;
     const [activeSlide, setActiveSlide] = useState(0);
     const {
@@ -31,16 +31,18 @@ export default function Slideshow({ items = [], slideComponent, isTopIndicator =
     });
 
     return (
-        <div className={styles.Slideshow}>
+        <div className={classNames(styles.Slideshow, {'alignBottom': alignBottom })}>
             {carouselFragment}
-            <div className={classNames(styles.indicator, { [styles.indicatorTopAligned]: isTopIndicator })}>
-                {items.map((_, i) =>
-                    <div
-                        key={i}
-                        className={styles.dot}
-                        data-active={activeSlide === i}
-                    />)}
-            </div>
+            {showIndicator &&
+                <div className={classNames(styles.indicator)}>
+                    {items.map((_, i) =>
+                        <div
+                            key={i}
+                            className={styles.dot}
+                            data-active={activeSlide === i}
+                        />)}
+                </div>
+            }
         </div>
     );
 }

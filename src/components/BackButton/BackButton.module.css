@@ -2,13 +2,8 @@
     width: 40px;
     height: 40px;
     padding: 0;
-    outline: 1px solid #BFBFBF;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--popup-background);
-}
-
-.Button svg {
-    transform: translateX(-1px);
+    background: transparent;
 }

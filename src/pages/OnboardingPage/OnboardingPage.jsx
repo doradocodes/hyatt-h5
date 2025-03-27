@@ -18,7 +18,6 @@ export function OnboardingPage() {
             <Slideshow
                 items={copy[language].onboardingPage.intro.slideshow}
                 slideComponent={OnboardingSlide}
-                isTopIndicator={true}
             />
         </div>
     </div>

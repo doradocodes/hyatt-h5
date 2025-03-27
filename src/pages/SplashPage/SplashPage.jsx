@@ -14,6 +14,7 @@ export function SplashPage() {
 
     const pageRef = useRef(null);
     const introRef = useRef(null);
+    const circleRef = useRef(null);
     const headerRef = useRef(null);
     const screen1Ref = useRef(null);
     const logoRef = useRef(null);
@@ -24,7 +25,7 @@ export function SplashPage() {
         const timeline = gsap.timeline({
             delay: 1,
         });
-        // fade in app
+
         timeline.fromTo("#root", {
             opacity: 0,
             duration: 1,
@@ -33,54 +34,56 @@ export function SplashPage() {
             duration: 1,
         });
 
-        // blur app background (with app fades in)
-        timeline.to(pageRef, {
-            backdropFilter: 'blur(8px)',
-            duration: 0.3,
-        }, '<')
-
         // expand circle
-        timeline.to(introRef.current, {
+        timeline.to(circleRef.current, {
             delay: 1,
             clipPath: 'circle(100% at 50% 50%)',
-            duration: 2,
+            duration: 1.5,
+        });
+        timeline.to(introRef.current, {
+            opacity: 0,
+            onComplete: () => {
+                introRef.current.style.display = 'none';
+            }
         });
 
-        // fade out logo
-        timeline.to(logoRef.current, {
-            opacity: 0,
-            duration: 0.3,
-        });
-
-
-        // fade in screen 1
-        timeline.fromTo(screen1Ref.current, {
-            opacity: 0,
-            duration: 1,
-        }, {
-            delay: 1,
-            opacity: 1,
-            duration: 1,
-        });
-        timeline.fromTo(headerRef.current, {
-            opacity: 0,
-            duration: 1,
-        }, {
-            opacity: 1,
-            duration: 1,
-        }, '<');
-        timeline.fromTo(CTAref.current, {
-            opacity: 0,
-            duration: 1,
-        }, {
-            opacity: 1,
-            duration: 1,
-        });
+        // // fade out logo
+        // timeline.to(logoRef.current, {
+        //     opacity: 0,
+        //     duration: 0.3,
+        // });
+        //
+        //
+        // // fade in screen 1
+        // timeline.fromTo(screen1Ref.current, {
+        //     opacity: 0,
+        //     duration: 1,
+        // }, {
+        //     delay: 1,
+        //     opacity: 1,
+        //     duration: 1,
+        // });
+        // timeline.fromTo(headerRef.current, {
+        //     opacity: 0,
+        //     duration: 1,
+        // }, {
+        //     opacity: 1,
+        //     duration: 1,
+        // }, '<');
+        // timeline.fromTo(CTAref.current, {
+        //     opacity: 0,
+        //     duration: 1,
+        // }, {
+        //     opacity: 1,
+        //     duration: 1,
+        // });
     }, []);
 
-    return <div key={1} className={classNames('page', styles.page)} ref={pageRef}>
-        <div className={styles.intro} ref={introRef}>
-            <div className="logo" ref={logoRef}></div>
+    return <div key={1} className={classNames('page')} ref={pageRef}>
+        <div className={classNames(styles.intro)} ref={introRef}>
+            <div className={styles.circle} ref={circleRef}>
+                <div className="logo" ref={logoRef}></div>
+            </div>
         </div>
 
         <div className="header" ref={headerRef}>
@@ -92,16 +95,16 @@ export function SplashPage() {
                 <h1 className={styles.contentTitle}>
                     {copy[language].splashPage.intro}
                 </h1>
-                <div ref={CTAref} className={styles.contentWrapper}>
-                    <SingleSelect
-                        options={[
-                            {label: 'English', value: 'en'},
-                            {label: '中文', value: 'zh'},
-                        ]}
-                        onChange={value => {
-                            setLanguage(value);
-                        }}
-                    />
+                <SingleSelect
+                    options={[
+                        {label: 'English', value: 'en'},
+                        {label: '中文', value: 'zh'},
+                    ]}
+                    onChange={value => {
+                        setLanguage(value);
+                    }}
+                />
+                <div ref={CTAref}>
                     <div className={styles.buttonWrapper}>
                         <Link to={'/onboarding'}>
                             <button>{copy[language].splashPage.CTA}</button>

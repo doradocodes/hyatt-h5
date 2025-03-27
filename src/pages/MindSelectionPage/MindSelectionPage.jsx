@@ -22,6 +22,8 @@ export function MindSelectionPage() {
             <Slideshow
                 items={copy[language].mindSelectionPage.intro.slideshow}
                 slideComponent={MindSelectionSlide}
+                showIndicator={false}
+                alignBottom={true}
             />
         </div>
     </div>

@@ -80,7 +80,6 @@ button {
   background-color: var(--button-background-color);
   color: white;
   cursor: pointer;
-  backdrop-filter: blur(3px);
   transition: border-color 0.25s;
   display: block;
 }
