@@ -90,6 +90,29 @@ export default {
             },
 
         },
+        meditationSessionPage: {
+            sessionDurationLabel: 'Session duration',
+            states: {
+                'deep-sleep': {
+                    subtitle: 'Brainwave | Delta',
+                    title: 'Deep Sleep',
+                    body: 'Enter a state of restorative, deep sleep designed to help you fully recharge and wake feeling refreshed. In the \'Delta\' phase, we guide your mind into the delta brainwave range—waves closely tied to the deepest, most rejuvenating stages of sleep.\n' +
+                        '\n' +
+                        'Through a gentle, slowed rhythm, this session calms your nervous system, eases muscle tension, and fosters a profound sense of relaxation, creating the ideal environment for complete rest and renewal.\n',
+                    CTA: 'Play the session',
+                },
+                'recharge': {
+                    subtitle: 'Brainwave | Theta',
+                    title: 'Recharge',
+                    body: 'In this session, we gently guide your mind into the ‘Theta’ brainwave range—a frequency scientifically associated with deep relaxation, heightened creativity, intuitive insights, and bursts of inspiration.\n' +
+                        '\n' +
+                        'By entering this tranquil state, you can unlock a deeper connection to your inner self, allowing your thoughts to flow freely and organically. This session is thoughtfully designed to cultivate a calm, meditative state where mental clarity and self-discovery flourish.\n',
+                    CTA: 'Play the session',
+                },
+
+            },
+
+        },
     },
     zh: {
         splashPage: {

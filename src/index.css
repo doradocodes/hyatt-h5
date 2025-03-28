@@ -67,6 +67,21 @@ h2 {
   line-height: 1.1;
 }
 
+h3 {
+  margin: 0;
+  font-weight: normal;
+}
+
+h4 {
+  margin: 0;
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+p {
+  margin: 0;
+}
+
 button {
   border-radius: 2rem;
   width: 100%;
@@ -79,7 +94,9 @@ button {
   color: white;
   cursor: pointer;
   transition: border-color 0.25s;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 img {
@@ -97,4 +114,8 @@ img {
   background-position: center;
   width: 100px;
   height: 50px;
+}
+
+.logo.inverse {
+  filter: invert(1);
 }

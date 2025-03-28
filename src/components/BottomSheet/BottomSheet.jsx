@@ -1,11 +1,22 @@
-import React from "react";
+import React, {useEffect, useRef, useState} from "react";
 import styles from './BottomSheet.module.css';
+import gsap from "gsap";
 
-export default function BottomSheet() {
-    return <div className={styles.BottomSheet}>
-        <h3>Brainwave | Delta</h3>
-        <h2>Deep Sleep</h2>
-        <p>copy</p>
-        <button>Play the session</button>
+export default function BottomSheet({children, isClosed, showHandle = false, onClose}) {
+    const [isSheetClosed, setIsSheetClosed] = useState(isClosed);
+
+    useEffect(() => {
+        setIsSheetClosed(isClosed);
+    }, [isClosed]);
+
+    // TODO: close on swipe down
+    const closeSheet = () => {
+        setIsSheetClosed(true);
+        onClose && onClose();
+    }
+
+    return <div className={styles.BottomSheet} data-state={isSheetClosed ? 'closed': ''}>
+        { showHandle && <div className={styles.Handle} onClick={closeSheet}></div> }
+        {children}
     </div>
 }

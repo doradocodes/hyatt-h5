@@ -8,3 +8,139 @@
 .playerWrapper {
     display: flex;
 }
+
+.Visualizer {
+    background: url("/images/MindSelection_DeepSleep.png");
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.BottomSheetTitleWrapper {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.Screen {
+    position: relative;
+}
+
+.SessionDuration {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 1;
+
+    background: white;
+    border-radius: 30px;
+    color: var(--primary-color);
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 0.8em;
+
+    transform: translateX(-50%);
+    opacity: 0;
+}
+
+.SessionControls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 30%;
+    background: linear-gradient(0deg, rgba(0,0,0,1) 13%, rgba(0,0,0,0.7497592787114846) 69%, rgba(0,212,255,0) 100%);
+    opacity: 0;
+}
+
+[data-show="true"] {
+    transition: opacity 0.5s;
+    opacity: 1;
+}
+
+.SessionControlsWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    text-align: left;
+}
+
+.PlayButton {
+    background: white;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+}
+
+.PlayButton svg {
+    width: 35px;
+    height: 35px;
+}
+
+.IconButton {
+    background: transparent;
+    padding: 0;
+}
+
+.Flex {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.OutlineButton {
+    border: 1px solid white;
+    background: transparent;
+}
+
+.List {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.List li {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.List li[data-active="true"] {
+    background: #D7E4F0;
+}
+
+.BottomSheetContent {
+    padding: 1.25rem;
+}
+
+.PlayIcon {
+    background: #D7E4F0;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+}
+
+.NowPlaying {
+    font-size: 0.8em;
+}
+
+.NowPlaying:after {
+    content:'';
+    background: url('/icons/now-playing-icon.svg');
+    background-size: contain;
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 0.25rem;
+}

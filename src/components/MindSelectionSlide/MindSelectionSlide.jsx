@@ -12,7 +12,7 @@ export const MindSelectionSlide = ({data}) => {
                     <h3>Brainwave | {data.type}</h3>
                     <h2>{data.title}</h2>
                     {/*<p>{data.body}</p>*/}
-                    {data.link && <Link className={styles.SlideCTA} to={data.link}>
+                    {data.link && <Link className={styles.SlideCTA} to={`/meditation-session/${data.id}`}>
                         <img src="/icons/chevron-right.svg" alt="Next"/>
                     </Link>}
                 </div>
