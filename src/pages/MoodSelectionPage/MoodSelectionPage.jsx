@@ -47,7 +47,7 @@ export function MoodSelectionPage() {
 
     return <div className={"page"}>
         <div className="header">
-            <BackButton url={"/"}/>
+            <BackButton url={"/onboarding"}/>
             <div className="logo"></div>
         </div>
         <div className="screen" ref={screen1Ref}>

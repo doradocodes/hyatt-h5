@@ -1,0 +1,91 @@
+.Screen {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ButtonWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.Video {
+    width: 80vw;
+    height: 80vw;
+    background-image: url('/images/MindSelection_DeepSleep.png');
+    background-size: cover;
+    border-radius: 20px;
+    border: 10px solid var(--button-background-color);
+    position: relative;
+}
+
+.PlayIcon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.PlayIcon svg {
+    width: 30px;
+    height: 30px;
+}
+
+.BottomSheetContent {
+    padding: 1.25rem;
+    position: relative;
+}
+
+.SocialMediaWrapper {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1rem;
+}
+
+.SocialMediaButton {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--primary-color);
+}
+
+.SocialMediaInput {
+    border-radius: 30px;
+    border: 1px solid var(--primary-color);
+    background: transparent;
+    color: var(--primary-color);
+    width: 100%;
+    padding: 1rem;
+}
+
+.SocialMediaInputButton {
+    border-radius: 30px;
+    color: white;
+    padding: 1rem;
+    cursor: pointer;
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin-right: 0.8rem;
+}
+
+.Copy {
+    margin-bottom: 1rem;
+}

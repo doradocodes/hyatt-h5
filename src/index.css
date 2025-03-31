@@ -99,6 +99,12 @@ button {
   align-items: center;
 }
 
+button.alt {
+    background-color: transparent;
+    color: var(--button-background-color);
+    border-color: var(--button-background-color);
+}
+
 img {
   -webkit-user-select: none;
   -khtml-user-select: none;

@@ -1,4 +1,4 @@
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import styles from "./MeditationSessionPage.module.css";
 import BackButton from "../../components/BackButton/BackButton.jsx";
 import React, {useEffect, useRef, useState} from "react";
@@ -19,6 +19,7 @@ export function MeditationSessionPage({ }) {
     // const [sessionTime, setSessionTime] = useState(0);
     const [showControls, setShowControls] = useState(false);
     const [isPlaying, setIsPlaying] = useState(false);
+    const [musicTheme, setMusicTheme] = useState('ambient');
 
     const [isBottomSheetClosed, setIsBottomSheetClosed] = useState(true);
     const [isMusicThemeBottomSheetClosed, setIsMusicThemeBottomSheetClosed] = useState(true);
@@ -73,7 +74,7 @@ export function MeditationSessionPage({ }) {
             <div className="logo inverse"></div>
         </div>
         <div className={classNames('screen', styles.Screen)}>
-            <div className={classNames(styles.SessionDuration)} data-show={showControls}>{copy[language].meditationSessionPage.sessionDurationLabel} | <span ref={durationRef}></span></div>
+            <div className={classNames(styles.SessionDuration)} data-show={showControls}>{copy[language].meditationSessionPage.sessionDurationLabel} | <span ref={durationRef}>00:00</span></div>
             <div className={classNames(styles.SessionControls)} data-show={showControls}>
                 <div className={styles.SessionControlsWrapper}>
                     <div className={styles.Flex}>
@@ -93,13 +94,11 @@ export function MeditationSessionPage({ }) {
                     </div>
                     <div className={styles.Flex}>
                         <button className={styles.IconButton} onClick={() => {
-                            console.log('isMusicThemeBottomSheetClosed', isMusicThemeBottomSheetClosed);
                             setIsMusicThemeBottomSheetClosed(!isMusicThemeBottomSheetClosed);
                         }}>
                             <img src="/icons/theme-icon.svg" alt="Change Theme"/>
                         </button>
                         <button className={styles.IconButton} onClick={() => {
-                            console.log('isSessionBottomSheetClosed', isSessionBottomSheetClosed);
                             setIsSessionBottomSheetClosed(!isSessionBottomSheetClosed);
                         }}>
                             <img src="/icons/session-icon.svg" alt="Change Session"/>
@@ -107,7 +106,9 @@ export function MeditationSessionPage({ }) {
                     </div>
 
                 </div>
-                <button className={styles.OutlineButton}>End</button>
+                <Link to={"/share"}>
+                    <button className={styles.OutlineButton}>{copy[language].meditationSessionPage.CTA}</button>
+                </Link>
             </div>
             <div className={styles.Visualizer}></div>
         </div>
@@ -142,27 +143,23 @@ export function MeditationSessionPage({ }) {
         >
             <div>
                 <div className={styles.BottomSheetContent}>
-                    <h4>Music theme</h4>
-                    <p>Switch to a music theme that fits your mood.</p>
+                    <h4>{copy[language].meditationSessionPage.musicThemeTitle}</h4>
+                    <p>{copy[language].meditationSessionPage.musicThemeSubtitle}</p>
                 </div>
 
                 <ul className={styles.List}>
-                    <li data-active="true">
-                        Ambient
-                        <span className={styles.NowPlaying}>
-                            Now playing
-                        </span>
-                    </li>
-                    <li>Classical
-                        <span className={styles.PlayIcon}>
-                            <PlayButtonIcon color="#161F6E" play={true}/>
-                        </span>
-                    </li>
-                    <li>Jazz
-                        <span className={styles.PlayIcon}>
-                            <PlayButtonIcon color="#161F6E" play={true}/>
-                        </span>
-                    </li>
+                    {copy[language].meditationSessionPage.musicThemes.map((theme, index) => (
+                        <li key={index} data-active={theme.id === musicTheme}>
+                            {theme.title}
+                            {theme.id === musicTheme ?
+                                <span className={styles.NowPlaying}>Now playing</span>
+                                :
+                                <span className={styles.PlayIcon}>
+                                    <PlayButtonIcon color="#161F6E" play={true}/>
+                                </span>
+                            }
+                        </li>
+                    ))}
                 </ul>
             </div>
         </BottomSheet>
@@ -175,27 +172,25 @@ export function MeditationSessionPage({ }) {
         >
             <div>
                 <div className={styles.BottomSheetContent}>
-                    <h4>Try other session</h4>
-                    <p>Switch to a session that fits your current mood.</p>
+                    <h4>{copy[language].meditationSessionPage.sessionTitle}</h4>
+                    <p>{copy[language].meditationSessionPage.sessionSubtitle}</p>
                 </div>
 
                 <ul className={styles.List}>
-                    <li data-active="true">
-                        Deep sleep
-                        <span className={styles.NowPlaying}>
-                            Now playing
-                        </span>
-                    </li>
-                    <li>Classical
-                        <span className={styles.PlayIcon}>
-                            <PlayButtonIcon color="#161F6E" play={true}/>
-                        </span>
-                    </li>
-                    <li>Jazz
-                        <span className={styles.PlayIcon}>
-                            <PlayButtonIcon color="#161F6E" play={true}/>
-                        </span>
-                    </li>
+                    {copy[language].meditationSessionPage.sessions.map((session, index) => (
+                        <Link to={`/meditation-session/${session.id}`}>
+                            <li key={index} data-active={session.id === id}>
+                                {session.title}
+                                { session.id === id ?
+                                    <span className={styles.NowPlaying}>Now playing</span>
+                                    :
+                                    <span>
+                                        <img src="/icons/chevron-right.svg" alt="Next"/>
+                                    </span>
+                                }
+                            </li>
+                        </Link>
+                    ))}
                 </ul>
             </div>
         </BottomSheet>

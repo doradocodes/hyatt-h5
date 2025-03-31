@@ -5,7 +5,7 @@ import {SplashPage} from "./pages/SplashPage/SplashPage.jsx";
 import {MoodSelectionPage} from "./pages/MoodSelectionPage/MoodSelectionPage.jsx";
 import {MindSelectionPage} from "./pages/MindSelectionPage/MindSelectionPage.jsx";
 import {MeditationSessionPage} from "./pages/MeditationSessionPage/MeditationSessionPage.jsx";
-import {SharePage} from "./pages/SharePage.jsx";
+import {SharePage} from "./pages/SharePage/SharePage.jsx";
 import {OnboardingPage} from "./pages/OnboardingPage/OnboardingPage.jsx";
 import {useEffect} from "react";
 

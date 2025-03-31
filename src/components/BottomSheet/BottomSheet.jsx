@@ -9,7 +9,6 @@ export default function BottomSheet({children, isClosed, showHandle = false, onC
         setIsSheetClosed(isClosed);
     }, [isClosed]);
 
-    // TODO: close on swipe down
     const closeSheet = () => {
         setIsSheetClosed(true);
         onClose && onClose();
