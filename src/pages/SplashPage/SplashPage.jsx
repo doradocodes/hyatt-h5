@@ -18,7 +18,6 @@ export function SplashPage() {
     const headerRef = useRef(null);
     const screen1Ref = useRef(null);
     const logoRef = useRef(null);
-    const popupContentRef = useRef(null);
     const CTAref = useRef(null);
 
     useEffect(() => {
@@ -43,7 +42,9 @@ export function SplashPage() {
         timeline.to(introRef.current, {
             opacity: 0,
             onComplete: () => {
-                introRef.current.style.display = 'none';
+                if (introRef.current) {
+                    introRef.current.style.display = 'none';
+                }
             }
         });
     }, []);

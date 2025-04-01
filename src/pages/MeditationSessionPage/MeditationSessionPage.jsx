@@ -8,13 +8,19 @@ import copy from "../../locale/copy.js";
 import gsap from "gsap";
 import classNames from "classnames";
 import {PlayButtonIcon} from "../../components/PlayButtonIcon/PlayButtonIcon.jsx";
+import {useAudioEngineStore} from "../../state/audioEngineStore.js";
+import * as Tone from "tone";
+import { SONG_IDS } from "../../AudioEngine/Constants.js";
 
 export function MeditationSessionPage({ }) {
     const { id } = useParams();
     const language = useLanguageStore(state => state.language);
+    const setAudioEngine = useAudioEngineStore(state => state.setAudioEngine);
+
 
     const intervalRef = useRef(null);
     const durationRef = useRef(null);
+    const audioEngineRef = useRef(null);
 
     // const [sessionTime, setSessionTime] = useState(0);
     const [showControls, setShowControls] = useState(false);
@@ -48,10 +54,14 @@ export function MeditationSessionPage({ }) {
         }
     }, [isPlaying]);
 
-    const startSession = () => {
+    const startSession = async () => {
         setIsBottomSheetClosed(true);
         setShowControls(true);
         setIsPlaying(true);
+
+        // init the audio engine
+        audioEngineRef.current = await initEngine(Tone);
+        audioEngineRef.current.playSong(SONG_IDS[id]);
     };
 
     const formatTime = (seconds) => {
@@ -65,8 +75,43 @@ export function MeditationSessionPage({ }) {
     }
 
     const playPauseSession = () => {
-        setIsPlaying(prev => !prev);
+        if (isPlaying) {
+            setIsPlaying(false);
+            audioEngineRef.current.stopSong();
+        } else {
+            setIsPlaying(true);
+            audioEngineRef.current.playSong(SONG_IDS[id]);
+        }
     }
+
+
+    const initEngine = async (tone) => {
+        console.log("APP: Init ToneJS and Audio Engine");
+
+        // create context for playback, which is not that interactive / responsive, but easier on the CPU
+        const context = new Tone.Context(
+            { latencyHint: "playback" }
+        );
+        Tone.setContext(context);
+        console.log("AUDIO: Tone.Context: Latency Hint:", Tone.getContext().latencyHint, "| Sample Rate:", Tone.getContext().sampleRate);
+
+        //prevents clicking sound with Tone starts up below
+        Tone.getContext().rawContext.suspend();
+
+        // Start up tone
+        await Tone.start();
+        console.log("AUDIO: Tone started", Tone.getContext().state, Tone);
+
+        // import AudioEngine class (we can't do this before tone is init'd)
+        const { default: AudioEngine } = await import('./../../AudioEngine/AudioEngine');
+
+        //pass tone reference into audio engine on init
+        const engine = new AudioEngine(tone);
+
+        setAudioEngine(engine);
+
+        return engine;
+    };
 
     return <div className={"page"}>
         <div className="header">
