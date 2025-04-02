@@ -8,17 +8,16 @@ import classNames from "classnames";
 import {useNavigate} from "react-router-dom";
 import CircularProgress from "../../components/CircularProgress/CircularProgress.jsx";
 
-const MOOD_ICONS = {
-    excited: "icons/excited-icon.svg",
-    relaxed: "icons/relaxed-icon.svg",
-    stressed: "icons/stressed-icon.svg",
-    tired: "icons/tired-icon.svg",
+function getRandomElement(array) {
+    return array[Math.floor(Math.random() * array.length)];
 }
 
 export function MoodSelectionPage() {
     const navigate = useNavigate();
     const language = useLanguageStore(state => state.language);
-    const setLanguage = useLanguageStore(state => state.setLanguage);
+    const pageCopy = copy[language].moodSelectionPage;
+
+
     const [progressStart, setProgressStart] = useState(false);
 
     const [mood, setMood] = useState(null);
@@ -52,46 +51,30 @@ export function MoodSelectionPage() {
         </div>
         <div className="screen" ref={screen1Ref}>
             <div className={styles.screenHeader}>
-                <h2>{copy[language].moodSelectionPage.intro.title}</h2>
-                <p>{copy[language].moodSelectionPage.intro.body}</p>
+                <h2>{pageCopy.intro.title}</h2>
+                <p>{pageCopy.intro.body}</p>
             </div>
             <div className={styles.Grid}>
-                <div className={styles.Tile} data-type="excited" onClick={() => onMoodSelection('excited')}>
-                    <div className={styles.TileContentWrapper}>
-                        <img src={MOOD_ICONS.excited} alt={copy[language].moodSelectionPage.moods.excited} className={styles.icon} />
-                        {copy[language].moodSelectionPage.moods.excited}
+                {Object.keys(pageCopy.moods).map((mood) => (
+                    <div className={styles.Tile} data-type={mood} onClick={() => onMoodSelection(mood)}>
+                        <div className={styles.TileContentWrapper}>
+                            <img src={pageCopy.moods[mood].icon} alt={pageCopy.moods[mood].name} className={styles.icon} />
+                            {pageCopy.moods[mood].name}
+                        </div>
                     </div>
-                </div>
-                <div className={styles.Tile} data-type="relaxed" onClick={() => onMoodSelection('relaxed')}>
-                    <div className={styles.TileContentWrapper}>
-                        <img src={MOOD_ICONS.relaxed} alt={copy[language].moodSelectionPage.moods.relaxed} className={styles.icon} />
-                        {copy[language].moodSelectionPage.moods.relaxed}
-                    </div>
-                </div>
-                <div className={styles.Tile} data-type="stressed" onClick={() => onMoodSelection('stressed')}>
-                    <div className={styles.TileContentWrapper}>
-                        <img src={MOOD_ICONS.stressed} alt={copy[language].moodSelectionPage.moods.stressed} className={styles.icon} />
-                        {copy[language].moodSelectionPage.moods.stressed}
-                    </div>
-                </div>
-                <div className={styles.Tile} data-type="tired" onClick={() => onMoodSelection('tired')}>
-                    <div className={styles.TileContentWrapper}>
-                        <img src={MOOD_ICONS.tired} alt={copy[language].moodSelectionPage.moods.tired} className={styles.icon} />
-                        {copy[language].moodSelectionPage.moods.tired}
-                    </div>
-                </div>
+                ))}
             </div>
         </div>
 
         <div className={classNames('screen', !mood && styles.Mood)} ref={screen2Ref}>
             <div className={styles.screenHeader}>
-                <h2>{copy[language].moodSelectionPage.intro.title}</h2>
-                <p>{copy[language].moodSelectionPage.intro.body}</p>
+                <h2>{pageCopy.intro.title}</h2>
+                <p>{pageCopy.intro.body}</p>
             </div>
             <div className={styles.MoodSelectionWrapper}>
                 <div className={styles.SelectedMood} data-type={mood}>
-                    <img src={MOOD_ICONS[mood]} alt={copy[language].moodSelectionPage.moods[mood]} className={styles.icon} />
-                    {copy[language].moodSelectionPage.moods[mood]}
+                    <img src={pageCopy.moods[mood]?.icon} alt={pageCopy.moods[mood]?.name} className={styles.icon} />
+                    {pageCopy.moods[mood]?.name}
                 </div>
                 <CircularProgress
                     size={290}
@@ -99,12 +82,13 @@ export function MoodSelectionPage() {
                     duration={5}
                     start={progressStart}
                     onAnimationComplete={() => {
-                        navigate('/mind-selection');
+                        const meditationId = getRandomElement(pageCopy.moods[mood].recommendedMeditations);
+                        navigate(`/mind-selection/${meditationId}`);
                     }}
                 />
             </div>
             <p>
-                {copy[language].moodSelectionPage.moodSelectionProgress}
+                {pageCopy.moodSelectionProgress}
             </p>
         </div>
     </div>

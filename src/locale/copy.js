@@ -1,3 +1,11 @@
+const BRAINWAVE_TYPES = {
+    DELTA: 'deep-sleep',
+    THETA: 'recharge',
+    ALPHA: 'meditation',
+    BETA: 'focus',
+    GAMMA: 'energize',
+}
+
 export default {
     en: {
         splashPage: {
@@ -35,13 +43,26 @@ export default {
                 body: 'Choose your current feeling',
             },
             moods: {
-                happy: 'Happy',
-                sad: 'Sad',
-                excited: 'Excited',
-                relaxed: 'Relaxed',
-                anxious: 'Anxious',
-                stressed: 'Stressed',
-                tired: 'Tired',
+                excited: {
+                    name: 'Excited',
+                    icon: 'icons/excited-icon.svg',
+                    recommendedMeditations: [BRAINWAVE_TYPES.GAMMA, BRAINWAVE_TYPES.BETA, BRAINWAVE_TYPES.ALPHA],
+                },
+                relaxed: {
+                    name: 'Relaxed',
+                    icon: 'icons/relaxed-icon.svg',
+                    recommendedMeditations: [BRAINWAVE_TYPES.GAMMA, BRAINWAVE_TYPES.ALPHA, BRAINWAVE_TYPES.BETA],
+                },
+                stressed: {
+                    name: 'Stressed',
+                    icon: 'icons/stressed-icon.svg',
+                    recommendedMeditations: [BRAINWAVE_TYPES.THETA, BRAINWAVE_TYPES.ALPHA],
+                },
+                tired: {
+                    name: 'Tired',
+                    icon: 'icons/tired-icon.svg',
+                    recommendedMeditations: [BRAINWAVE_TYPES.DELTA, BRAINWAVE_TYPES.THETA],
+                },
             },
             moodSelectionProgress: 'Generating recommended session based on your selection...',
         },
@@ -51,7 +72,6 @@ export default {
                 body: 'Choose your desired mental state',
                 slideshow: [
                     {
-                        isRecommended: true,
                         id: 'deep-sleep',
                         image: '/images/MindSelection_DeepSleep.png',
                         title: 'Deep Sleep',

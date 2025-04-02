@@ -27,7 +27,7 @@ function App() {
                     <Route path="/" element={<SplashPage />} />
                     <Route path="/onboarding" element={<OnboardingPage />} />
                     <Route path="/mood-selection" element={<MoodSelectionPage/>} />
-                    <Route path="/mind-selection" element={<MindSelectionPage/>} />
+                    <Route path="/mind-selection/:meditationId" element={<MindSelectionPage/>} />
                     <Route path="/meditation-session/:id" element={<MeditationSessionPage/>} />
                     <Route path="/share" element={<SharePage/>} />
                 </Routes>

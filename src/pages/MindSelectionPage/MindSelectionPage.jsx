@@ -5,9 +5,12 @@ import copy from "../../locale/copy.js";
 import Slideshow from "../../components/Slideshow/Slideshow.jsx";
 import {MindSelectionSlide} from "../../components/MindSelectionSlide/MindSelectionSlide.jsx";
 import styles from "./MindSelectionPage.module.css";
+import {useParams} from "react-router-dom";
 
 export function MindSelectionPage() {
     const language = useLanguageStore(state => state.language);
+    const pageCopy = copy[language].mindSelectionPage;
+    const {meditationId} = useParams();
 
     return <div className={"page"}>
         <div className="header">
@@ -16,12 +19,12 @@ export function MindSelectionPage() {
         </div>
         <div className="screen">
             <div className={styles.TitleWrapper}>
-                <h2 className={styles.Title}>{copy[language].mindSelectionPage.intro.title}</h2>
-                <p className={styles.Body}>{copy[language].mindSelectionPage.intro.body}</p>
+                <h2 className={styles.Title}>{pageCopy.intro.title}</h2>
+                <p className={styles.Body}>{pageCopy.intro.body}</p>
             </div>
             <Slideshow
-                items={copy[language].mindSelectionPage.intro.slideshow}
-                slideComponent={MindSelectionSlide}
+                items={pageCopy.intro.slideshow}
+                slideComponent={({data}) => <MindSelectionSlide data={data} isRecommended={data.id === meditationId}/>}
                 showIndicator={false}
                 alignBottom={true}
             />

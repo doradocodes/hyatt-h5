@@ -1,13 +1,15 @@
 import styles from './MindSelectionSlide.module.css';
 import {Link} from "react-router-dom";
 
-export const MindSelectionSlide = ({data}) => {
+export const MindSelectionSlide = ({data, isRecommended = false}) => {
     return <div className={styles.Slide}>
-        {data.isRecommended && <span className={styles.Tag}>Recommended</span>}
+        {isRecommended && <span className={styles.Tag}>Recommended</span>}
 
         <div className={styles.SlideContentWrapper}>
             <Link to={`/meditation-session/${data.id}`}>
-                <img className={styles.SlideImage} src={data.image} alt={data.title}/>
+                <div className={styles.SlideImageContainer}>
+                    <img className={styles.SlideImage} src={data.image} alt={data.title}/>
+                </div>
                 <div className={styles.SlideContent}>
                     <h3>Brainwave | {data.type}</h3>
                     <h2>{data.title}</h2>
