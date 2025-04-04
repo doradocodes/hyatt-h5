@@ -38,8 +38,10 @@ export function SplashPage() {
             delay: 1,
             clipPath: 'circle(100% at 50% 50%)',
             duration: 1.5,
+            ease: 'power2.in',
         });
         timeline.to(introRef.current, {
+            delay: 1,
             opacity: 0,
             onComplete: () => {
                 if (introRef.current) {

@@ -1,5 +1,6 @@
 import styles from './MindSelectionSlide.module.css';
 import {Link} from "react-router-dom";
+import classNames from "classnames";
 
 export const MindSelectionSlide = ({data, isRecommended = false}) => {
     return <div className={styles.Slide}>
@@ -8,7 +9,7 @@ export const MindSelectionSlide = ({data, isRecommended = false}) => {
         <div className={styles.SlideContentWrapper}>
             <Link to={`/meditation-session/${data.id}`}>
                 <div className={styles.SlideImageContainer}>
-                    <img className={styles.SlideImage} src={data.image} alt={data.title}/>
+                    <div className={classNames(styles.SlideImage)} data-type={data.id}></div>
                 </div>
                 <div className={styles.SlideContent}>
                     <h3>Brainwave | {data.type}</h3>

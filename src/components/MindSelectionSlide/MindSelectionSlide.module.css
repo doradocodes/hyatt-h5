@@ -27,9 +27,30 @@
 .SlideImage {
     width: 100%;
     height: 50vh;
-    display: block;
+    background-size: cover;
     transform: scale(1.1);
 }
+
+.SlideImage[data-type="delta"] {
+    background: url("/images/MindSelection_Delta.png");
+}
+
+.SlideImage[data-type="theta"] {
+    background: url("/images/MindSelection_Theta.png");
+}
+
+.SlideImage[data-type="beta"] {
+    background: url("/images/MindSelection_Beta.png");
+}
+
+.SlideImage[data-type="alpha"] {
+    background: url("/images/MindSelection_Alpha.png");
+}
+
+.SlideImage[data-type="gamma"] {
+    background: url("/images/MindSelection_Gamma.png");
+}
+
 
 .SlideImageContainer:before {
     content: "";

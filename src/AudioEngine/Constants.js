@@ -1,10 +1,10 @@
-export const SONG_IDS = Object.freeze({
+export const SongIDs = Object.freeze({
     INTRO: 0,
-    'deep-sleep': 1,
-    'recharge': 2,
-    'meditation': 3,
-    'focus': 4,
-    'energize': 5,
+    DELTA: 1,
+    THETA: 2,
+    ALPHA: 3,
+    BETA: 4,
+    GAMMA: 5,
 });
 
 export const SongFrequencies = Object.freeze(

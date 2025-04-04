@@ -5,22 +5,21 @@ import React, {useEffect, useRef, useState} from "react";
 import BottomSheet from "../../components/BottomSheet/BottomSheet.jsx";
 import {useLanguageStore} from "../../state/languageStore.js";
 import copy from "../../locale/copy.js";
-import gsap from "gsap";
 import classNames from "classnames";
 import {PlayButtonIcon} from "../../components/PlayButtonIcon/PlayButtonIcon.jsx";
-import {useAudioEngineStore} from "../../state/audioEngineStore.js";
 import * as Tone from "tone";
-import { SONG_IDS } from "../../AudioEngine/Constants.js";
+import { SongIDs } from "../../AudioEngine/Constants.js";
+import Visualizer from '../../AudioEngine/Visualizer/Visualizer';
 
 export function MeditationSessionPage({ }) {
     const { id } = useParams();
+    const brainwaveID = id?.toUpperCase();
     const language = useLanguageStore(state => state.language);
-    const setAudioEngine = useAudioEngineStore(state => state.setAudioEngine);
 
+    const [audioEngine, setAudioEngine] = useState(null);
 
     const intervalRef = useRef(null);
     const durationRef = useRef(null);
-    const audioEngineRef = useRef(null);
 
     // const [sessionTime, setSessionTime] = useState(0);
     const [showControls, setShowControls] = useState(false);
@@ -60,8 +59,9 @@ export function MeditationSessionPage({ }) {
         setIsPlaying(true);
 
         // init the audio engine
-        audioEngineRef.current = await initEngine(Tone);
-        audioEngineRef.current.playSong(SONG_IDS[id]);
+        const engine= await initEngine(Tone);
+        await engine.playSong(SongIDs[brainwaveID]);
+        setAudioEngine(engine);
     };
 
     const formatTime = (seconds) => {
@@ -77,10 +77,10 @@ export function MeditationSessionPage({ }) {
     const playPauseSession = () => {
         if (isPlaying) {
             setIsPlaying(false);
-            audioEngineRef.current.stopSong();
+            audioEngine.stopSong();
         } else {
             setIsPlaying(true);
-            audioEngineRef.current.playSong(SONG_IDS[id]);
+            audioEngine.playSong(SongIDs[brainwaveID]);
         }
     }
 
@@ -107,8 +107,6 @@ export function MeditationSessionPage({ }) {
 
         //pass tone reference into audio engine on init
         const engine = new AudioEngine(tone);
-
-        setAudioEngine(engine);
 
         return engine;
     };
@@ -138,11 +136,11 @@ export function MeditationSessionPage({ }) {
                         </div>
                     </div>
                     <div className={styles.Flex}>
-                        <button className={styles.IconButton} onClick={() => {
-                            setIsMusicThemeBottomSheetClosed(!isMusicThemeBottomSheetClosed);
-                        }}>
-                            <img src="/icons/theme-icon.svg" alt="Change Theme"/>
-                        </button>
+                        {/*<button className={styles.IconButton} onClick={() => {*/}
+                        {/*    setIsMusicThemeBottomSheetClosed(!isMusicThemeBottomSheetClosed);*/}
+                        {/*}}>*/}
+                        {/*    <img src="/icons/theme-icon.svg" alt="Change Theme"/>*/}
+                        {/*</button>*/}
                         <button className={styles.IconButton} onClick={() => {
                             setIsSessionBottomSheetClosed(!isSessionBottomSheetClosed);
                         }}>
@@ -155,7 +153,14 @@ export function MeditationSessionPage({ }) {
                     <button className={styles.OutlineButton}>{copy[language].meditationSessionPage.CTA}</button>
                 </Link>
             </div>
-            <div className={styles.Visualizer}></div>
+            <div className={styles.Visualizer}>
+                {audioEngine && audioEngine.mainBus &&
+                    <Visualizer
+                        getLevels={() => audioEngine?.mainBus?.getLevels()}
+                        brainwaveID={SongIDs[brainwaveID]}
+                    />
+                }
+            </div>
         </div>
         <BottomSheet
             isClosed={isBottomSheetClosed}
@@ -223,18 +228,18 @@ export function MeditationSessionPage({ }) {
 
                 <ul className={styles.List}>
                     {copy[language].meditationSessionPage.sessions.map((session, index) => (
-                        <Link to={`/meditation-session/${session.id}`}>
-                            <li key={index} data-active={session.id === id}>
-                                {session.title}
-                                { session.id === id ?
-                                    <span className={styles.NowPlaying}>Now playing</span>
-                                    :
-                                    <span>
-                                        <img src="/icons/chevron-right.svg" alt="Next"/>
-                                    </span>
-                                }
-                            </li>
-                        </Link>
+                        <li key={index} data-active={session.id === id} onClick={() => {
+                            window.location.href = '/meditation-session/' + session.id;
+                        }}>
+                            {session.title}
+                            {session.id === id ?
+                                <span className={styles.NowPlaying}>Now playing</span>
+                                :
+                                <span>
+                                    <img src="/icons/chevron-right.svg" alt="Next"/>
+                                </span>
+                            }
+                        </li>
                     ))}
                 </ul>
             </div>

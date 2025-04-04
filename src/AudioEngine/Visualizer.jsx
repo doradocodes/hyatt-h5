@@ -25,7 +25,7 @@ const Visualizer = ({ getFrequencyData }) => {
     draw();
   }, [getFrequencyData]);
 
-  return <canvas ref={canvasRef} width="400" height="200" style={{ border: '1px solid #ddd' }} />;
+  return <canvas ref={canvasRef} width="400" height="200"></canvas>;
 };
 
 export default Visualizer;

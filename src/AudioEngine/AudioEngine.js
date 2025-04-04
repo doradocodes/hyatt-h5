@@ -8,7 +8,7 @@ import GammaSong from './Songs/songs/GammaSong';
 
 
 import Players from './Players/Players';
-import { SongFrequencies } from './Constants';
+import { SongFrequencies, SongIDs } from './Constants';
 
 export default class AudioEngine {
 
@@ -26,7 +26,7 @@ export default class AudioEngine {
     //this is the entry point for all the busses
     this.mainBusInput = null
     this.mainBus = null;
-    
+
     //init players
     this.players = null;
 
@@ -40,7 +40,7 @@ export default class AudioEngine {
   async initAudioEngine(){
 
     console.log("AUDIO: Init Audio Engine with Tone", this.tone);
-  
+
     if (!this.initComplete) {
 
       //if the context change caused state to be suspended, resume it
@@ -48,9 +48,9 @@ export default class AudioEngine {
       console.log("AUDIO: Tone resumed", this.tone.getContext().state);
 
       // global BPM
-      this.tone.getTransport().bpm.value = 100; 
+      this.tone.getTransport().bpm.value = 100;
       //lookahead time in seconds, for scheduling. Higher numbers help CPU performance, but can cause timing issues
-      this.tone.getContext().lookAhead = 1.0; 
+      this.tone.getContext().lookAhead = 1.0;
       console.log("AUDIO: Lookahead time", this.tone.getContext().lookAhead);
 
       if (this.tone.getTransport().state !== "started") {
@@ -72,7 +72,7 @@ export default class AudioEngine {
 
       this.mainBusInput = new this.tone.Gain(1.0);
       this.mainBus = new BusMain(this.tone, this.mainBusInput);
-      
+
       //init players
       this.players = new Players(
         this.tone, //pass in tone
@@ -84,7 +84,7 @@ export default class AudioEngine {
     }
   }
 
-  //LOAD and PLAY SONG 
+  //LOAD and PLAY SONG
   async playSong(songID){
 
     //init tone and engine components
@@ -105,12 +105,12 @@ export default class AudioEngine {
     } else {
       this.currSong = song; //save new song
     }
-  
+
     //play intro tone
     console.log("AUDIO: Play intro tone", songID);
     this.players.playIntroTone(songID);
 
-    
+
 
     // Wait for the song to load and capture the result
     const isLoaded = await this.currSong.load();
@@ -129,17 +129,52 @@ export default class AudioEngine {
     this.startSongID = this.tone.getTransport().scheduleOnce((time) => {
       console.log("AUDIO: Play Song", songID, "at time", time);
       this.players.play(this.currSong);
+
+      //play intro sound
+      if (songID === SongIDs.INTRO) {
+        this.playIntroSound()
+      }
+
     }, "+" + this.tone.Time("4n"));
-  
+
   }
 
- 
+  playIntroSound(){
+    console.log("PLAYERS: Play intro");
+    const url = `/sounds/intro/intro_H5.mp3`;
+
+    const introPlayer = new this.tone.Player({
+      url: url,
+      autostart: false, // set false to manually control
+      volume: 5, // db
+      onload: () => {
+        console.log("INTRO PLAYER: Loaded, starting now");
+        introPlayer.start();
+      },
+      onerror: (err) => {
+        console.error("INTRO PLAYER: Error loading", err);
+      }
+    }).toDestination();
+
+    // Fallback: start transport if needed (safeguard)
+    if (this.tone.Transport.state !== "started") {
+      this.tone.Transport.start();
+    }
+
+    // Optional: dispose after playback ends
+    introPlayer.onstop = () => {
+      introPlayer.dispose();
+      console.log("INTRO PLAYER: Disposed after stop");
+    };
+  }
+
+
   playComplete = (instrumentName) => {
     console.log("AUDIO: Instrument", instrumentName, "complete, play next");
     this.players.resetPlayer(instrumentName);
-    this.players.playInstrument(this.currSong);    
+    this.players.playInstrument(this.currSong);
   };
-  
+
   stopSong(){
 
     //stop startSongID
@@ -148,5 +183,5 @@ export default class AudioEngine {
 
     //stop all players
     this.players.stopAll();
-  }  
+  }
 }

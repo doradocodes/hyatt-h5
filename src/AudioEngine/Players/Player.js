@@ -56,6 +56,7 @@ export default class Player {
         // Calculate the duration (in seconds) of a sixteenth note for random shifts in loops
         this.sixteenthSeconds = this.tone.Time("16n").toSeconds();
 
+
     }
 
 
@@ -113,58 +114,49 @@ export default class Player {
             this.player.volume.rampTo(db, 3); //fade to all other sounds quicker
         }
 
-        // If noteChance is greater than 0, create an array of available pitches.
-        // We use a Set to keep only unique pitches from the sheetMusic.notes.
-        let availablePitches = [];
-        if (noteChance > 0) {
-            availablePitches = [...new Set(notes.map(n => n.pitch))];
-        }
-
         // Dispose of any existing part to avoid overlapping schedules
         if (this.part) { this.part.dispose(); }
 
         //TONE.PART
         // Create a new Tone.Part with the passed in note events
-        this.part = new this.tone.Part((time, note) => {
+        this.part = new this.tone.Part((time, scheduledNote) => {
+
+            // Clone pitch and velocity to start with what's already scheduled
+            let pitch = scheduledNote.pitch;
+            let noteVelocity = scheduledNote.velocity || 1.0;
+
+            // If noteChance passes, pick a completely different note (with pitch + velocity)
+            if (noteChance > 0 && notes.length > 0 && Math.random() < noteChance) {
+                const randomNote = notes[Math.floor(Math.random() * notes.length)];
+                pitch = randomNote.pitch;
+                noteVelocity = randomNote.velocity || 1.0;
+            }
 
             // === Velocity Randomization with Skip Chance ===
-            let noteVelocity = note.velocity || 1.0;
-
-            // First, check if this note should be skipped
             if (Math.random() < skipChance) {
                 noteVelocity = 0;
-            } else {
-                if (velocityRange !== 0) {
-                    // Randomize velocity between (1 - velocityRange) and 1.0.
-                    // For example, if velocityRange is 0.3, the velocity will be between 0.7 and 1.0.
-                    const velocityChange = Math.random() * velocityRange + (1 - velocityRange);
-                    noteVelocity *= velocityChange;
-                }
+            } else if (velocityRange !== 0) {
+                const velocityChange = Math.random() * velocityRange + (1 - velocityRange);
+                noteVelocity *= velocityChange;
             }
 
-            // TIME SHIFT
+            // === Time Shift ===
             let finalTime = time;
             if (timeRange !== 0) {
-                // Randomly shift the note by up to ±timeRange sixteenth notes.
                 const randomShift = (Math.random() * (timeRange * 2) - timeRange) * this.sixteenthSeconds;
-                finalTime = Math.max(time + randomShift, 0); // Prevent negative time.
+                finalTime = Math.max(time + randomShift, 0);
             }
 
-            // NOTE RANDOMIZATION
-            // If noteChance is greater than 0 and the random check passes, replace the note's pitch.
-            if (noteChance > 0 && availablePitches.length > 0 && Math.random() < noteChance) {
-                note.pitch = availablePitches[Math.floor(Math.random() * availablePitches.length)];
-            }
-
+            // === Trigger Note ===
             if (noteVelocity === 0) {
                 console.log("---------------- PLYR", this.id, this.instrumentName, "SKIPPED");
             } else {
-                console.log("++++++++++++++++ PLYR", this.id, this.instrumentName, "note at", finalTime, "w/pitch", note.pitch, "& velo", noteVelocity);
-                // Trigger the note with its pitch, duration, randomized time, and velocity.
-                this.player.triggerAttack(note.pitch, finalTime, noteVelocity);
+                console.log("++++++++++++++++ PLYR", this.id, this.instrumentName, "note at", finalTime, "w/pitch", pitch, "& velo", noteVelocity);
+                this.player.triggerAttack(pitch, finalTime, noteVelocity);
             }
 
         }, notes);
+
 
         // LOOPING
         //if loop total is -1, loop forever

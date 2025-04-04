@@ -7,7 +7,7 @@ export default class SolfeggioSynth {
 
         //build synth
         this.osc = new tone.Oscillator(523.25, "sine");
-        this.osc.volume.value = -30;
+        this.osc.volume.value = -35;
         this.ampEnv = new tone.AmplitudeEnvelope({
             attack: 3.5,   // gradual fade-in
             decay: 1.0,    // slower drop to the sustain level
@@ -37,7 +37,7 @@ export default class SolfeggioSynth {
         //this.frequencies = [164.81, 392.00, 523.25, 783.99, 1046.50]
         //pure solfeggios
         this.frequencies = [392.00, 164.81, 392.00, 523.25, 783.99, 1046.50]
-        
+        this.volumes = [-35, -35, -38, -39, -40, -48]
     }
 
     setFrequency(frequency){
@@ -50,6 +50,7 @@ export default class SolfeggioSynth {
     }
 
     play(set){
+        this.osc.volume.value = this.volumes[set];
         this.osc.frequency.value = this.frequencies[set];
         this.ampEnv.triggerAttackRelease("2m");
     }

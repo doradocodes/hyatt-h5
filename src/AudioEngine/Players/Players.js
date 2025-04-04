@@ -14,7 +14,8 @@ export default class Players {
             new Player(tone, 0, mainOutput, playComplete),
             new Player(tone, 1, mainOutput, playComplete),
             new Player(tone, 2, mainOutput, playComplete),
-            new Player(tone, 3, mainOutput, playComplete)
+            new Player(tone, 3, mainOutput, playComplete),
+            //new Player(tone, 4, mainOutput, playComplete)
         ];
 
         this.solfeggioSynth = new SolfeggioSynth(tone, mainOutput);
@@ -27,6 +28,7 @@ export default class Players {
         this.playerID_1 = null;
         this.playerID_2 = null;
         this.playerID_3 = null;
+        this.playerID_4 = null;
 
         //this.introTonePlayed = false;
     }
@@ -41,10 +43,10 @@ export default class Players {
 
     
     playIntroTone(songID){
-        //if (!this.introTonePlayed){
-            //this.introTonePlayed = true;
-            this.solfeggioSynth.play(songID); 
-        //}
+       if (songID === 0){ //don't play solfeggio for intro
+        return
+       }
+       this.solfeggioSynth.play(songID); 
     }
 
     //loads a new set of audio files and data sets into the app
@@ -59,22 +61,27 @@ export default class Players {
         this.bgLoopID = this.tone.getTransport().scheduleOnce((time) => {
             console.log("---> PLAYERS: BG LOOP");
             this.playBackgroundLoop(song); //start with background loop
-        }, "+" + this.tone.Time("4n"));
+        }, "+" + this.tone.Time("0"));
 
         this.playerID_1 = this.tone.getTransport().scheduleOnce((time) => {
             console.log("---> PLAYERS: PLAYER 2");
             this.playInstrument(song); //player 2
-        }, "+" + this.tone.Time("6m")); 
+        }, "+" + this.tone.Time("2m"));  //6m
 
         this.playerID_2 = this.tone.getTransport().scheduleOnce((time) => {
             console.log("---> PLAYERS: PLAYER 3");
             this.playInstrument(song); //player 3
-        }, "+" + this.tone.Time("14m")); 
+        }, "+" + this.tone.Time("8m"));  //14m
        
         this.playerID_3 = this.tone.getTransport().scheduleOnce((time) => {
             console.log("---> PLAYERS: PLAYER 4");
             this.playInstrument(song); //player 4
-        }, "+" + this.tone.Time("20m"));
+        }, "+" + this.tone.Time("14m")); //20
+
+        this.playerID_4 = this.tone.getTransport().scheduleOnce((time) => {
+            console.log("---> PLAYERS: PLAYER 5");
+            //this.playInstrument(song); //player 5
+        }, "+" + this.tone.Time("20m")); //20
         
     }
 
@@ -183,12 +190,14 @@ export default class Players {
         this.tone.getTransport().clear(this.playerID_1);
         this.tone.getTransport().clear(this.playerID_2);
         this.tone.getTransport().clear(this.playerID_3);
+        this.tone.getTransport().clear(this.playerID_4);
         
         //null out scheduled events
         this.bgLoopID = null;
         this.playerID_1 = null;
         this.playerID_2 = null;
         this.playerID_3 = null;
+        this.playerID_4 = null;
 
         //stop all players
         this.players.forEach(player => player.stop());
