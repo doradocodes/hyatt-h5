@@ -30,7 +30,7 @@ export default class ThetaSong extends Song {
         thetaBass.velocityRange = 0.2;
         thetaBass.skipChance = 0.05;
         thetaBass.noteChance = 0.1;
-        thetaBass.db = 6;
+        thetaBass.db = 0;
         this.instruments.push(thetaBass);
 
 
@@ -48,7 +48,7 @@ export default class ThetaSong extends Song {
         thetaChimesNote.velocityRange = 0.5;
         thetaChimesNote.skipChance = 0.23;
         thetaChimesNote.noteChance = 0.25;
-        thetaChimesNote.db = 7;
+        thetaChimesNote.db = 4;
         this.instruments.push(thetaChimesNote);
 
 

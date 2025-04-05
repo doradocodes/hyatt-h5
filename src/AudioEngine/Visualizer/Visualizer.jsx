@@ -8,13 +8,12 @@ import { VisualizerUtils } from './VisualizerUtils';
 import BrainwaveGenerator from './BrainwaveGenerator';
 
 const Visualizer = ({ getLevels, brainwaveID = SongIDs.BETA }) => {
-  
+
   const visualizerBars = useRef(null);
   const generatorRef = useRef(null);
   const barCountRef = useRef(null);
   const drawnBackgroundRef = useRef(false);
   const colors = useMemo(() => VisualizerColors.getColors(brainwaveID), [brainwaveID]);
-
 
   // Update generator parameters if brainwave changes
   useEffect(() => {
@@ -31,7 +30,7 @@ const Visualizer = ({ getLevels, brainwaveID = SongIDs.BETA }) => {
       const { p5 } = visualizerBars.current;
       const containerHeight = p5.height;
       const newColors = VisualizerColors.getColors(brainwaveID).barColors;
-      
+
       // Reset all bars
       visualizerBars.current.resetAllBars(brainwaveID, containerHeight, newColors);
     }
@@ -78,7 +77,7 @@ const Visualizer = ({ getLevels, brainwaveID = SongIDs.BETA }) => {
       p5.rect(0, 0, p5.width, p5.height);
       drawnBackgroundRef.current = true;
     //}
-    
+
 
     if (!visualizerBars.current || !getLevels || !generatorRef.current) return;
 
@@ -115,7 +114,7 @@ const Visualizer = ({ getLevels, brainwaveID = SongIDs.BETA }) => {
     }
 
     const carrierWave = VisualizerUtils.processMeters(() => meters, visualizerBars.current.bars.length, binRange, mirror);
-    
+
     generatorRef.current.update();
     const modulatorWave = generatorRef.current.getModulatorWave();
 

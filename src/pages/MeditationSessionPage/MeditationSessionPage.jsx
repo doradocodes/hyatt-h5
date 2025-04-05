@@ -10,6 +10,7 @@ import {PlayButtonIcon} from "../../components/PlayButtonIcon/PlayButtonIcon.jsx
 import * as Tone from "tone";
 import { SongIDs } from "../../AudioEngine/Constants.js";
 import Visualizer from '../../AudioEngine/Visualizer/Visualizer';
+import BrainwaveVisualizer from "../../components/BrainwaveVisualizer/BrainwaveVisualizer.jsx";
 
 export function MeditationSessionPage({ }) {
     const { id } = useParams();
@@ -155,9 +156,9 @@ export function MeditationSessionPage({ }) {
             </div>
             <div className={styles.Visualizer}>
                 {audioEngine && audioEngine.mainBus &&
-                    <Visualizer
-                        getLevels={() => audioEngine?.mainBus?.getLevels()}
-                        brainwaveID={SongIDs[brainwaveID]}
+                    <BrainwaveVisualizer
+                        audioEngine={audioEngine}
+                        songId={SongIDs[brainwaveID]}
                     />
                 }
             </div>

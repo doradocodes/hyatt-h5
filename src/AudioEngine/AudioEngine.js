@@ -110,7 +110,8 @@ export default class AudioEngine {
     console.log("AUDIO: Play intro tone", songID);
     this.players.playIntroTone(songID);
 
-
+    //fade in main bus
+    this.mainBus.fadeIn(1);
 
     // Wait for the song to load and capture the result
     const isLoaded = await this.currSong.load();
@@ -183,5 +184,11 @@ export default class AudioEngine {
 
     //stop all players
     this.players.stopAll();
+
+    //fade out main bus
+    this.mainBus.fadeOut();
+
+    //null out current song
+    this.currSong = null;
   }
 }

@@ -11,6 +11,7 @@ export function MindSelectionPage() {
     const language = useLanguageStore(state => state.language);
     const pageCopy = copy[language].mindSelectionPage;
     const {meditationId} = useParams();
+    const initialActiveItem = pageCopy.intro.slideshow.findIndex(item => item.id === meditationId);
 
     return <div className={"page"}>
         <div className="header">
@@ -27,6 +28,7 @@ export function MindSelectionPage() {
                 slideComponent={({data}) => <MindSelectionSlide data={data} isRecommended={data.id === meditationId}/>}
                 showIndicator={false}
                 alignBottom={true}
+                initialActiveItem={initialActiveItem}
             />
         </div>
     </div>

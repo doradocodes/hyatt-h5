@@ -38,7 +38,7 @@ export default class BetaSong extends Song {
         betaBellsBg.loopLength = "10m";
         betaBellsBg.loopTotal = 1;
         betaBellsBg.velocityRange = 0.3
-        betaBellsBg.db = -7;
+        betaBellsBg.db = -10;
         this.instruments.push(betaBellsBg);
 
        
@@ -52,9 +52,9 @@ export default class BetaSong extends Song {
         betaDreamPad.loopLength = "14m";
         betaDreamPad.loopTotal = 1;
         betaDreamPad.velocityRange = 0.5
-        betaDreamPad.noteChance = 0.5
+        //betaDreamPad.noteChance = 0.5
         betaDreamPad.skipChance = 0.4;
-        betaDreamPad.db = -15;
+        betaDreamPad.db = -17;
         this.instruments.push(betaDreamPad);
 
         

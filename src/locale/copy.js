@@ -64,29 +64,26 @@ export default {
                 body: 'Choose your desired mental state',
                 slideshow: [
                     {
-                        id: 'delta',
-                        title: 'Deep Sleep',
-                        type: 'Delta',
-                    },
-                    {
+                        id: 'gamma',
+                        title: 'Energize',
+                        type: 'Gamma',
+                    }, {
+                        id: 'alpha',
+                        title: 'Meditation',
+                        type: 'Alpha',
+                    }, {
+                        id: 'beta',
+                        title: 'Focus',
+                        type: 'Beta',
+                    }, {
                         id: 'theta',
                         title: 'Recharge',
                         type: 'Theta',
                     },
                     {
-                        id: 'beta',
-                        title: 'Focus',
-                        type: 'Beta',
-                    },
-                    {
-                        id: 'alpha',
-                        title: 'Meditation',
-                        type: 'Alpha',
-                    },
-                    {
-                        id: 'gamma',
-                        title: 'Energize',
-                        type: 'Gamma',
+                        id: 'delta',
+                        title: 'Deep Sleep',
+                        type: 'Delta',
                     },
                 ]
             },
@@ -124,7 +121,7 @@ export default {
                     title: 'Focus',
                     body: 'In this session, your mind enters the ‘Beta’ brainwave range—a state associated with active thinking, analytical problem-solving, and heightened focus. This brainwave frequency is where your brain is most engaged, making it ideal for tackling challenges, absorbing information, and staying alert.\n' +
 
-                    'Designed to enhance mental clarity, sharpen your concentration, and elevate your productivity. By the end, you\'ll feel prepared to navigate your day with focus and purpose.',
+                        'Designed to enhance mental clarity, sharpen your concentration, and elevate your productivity. By the end, you\'ll feel prepared to navigate your day with focus and purpose.',
                     CTA: 'Play the session',
                 },
                 'gamma': {
@@ -132,7 +129,7 @@ export default {
                     title: 'Energize',
                     body: 'In this session, your mind transitions into the ‘Gamma’ brainwave range—a state linked to heightened mental clarity, peak focus, and the natural feeling of joy. This frequency is often associated with moments of deep insight, heightened awareness, and an overall sense of well-being.\n' +
 
-                    'Designed to amplify your sense of energize, boost concentration, and channel positive energy, this session helps you feel uplifted, inspired, and deeply connected to your inner energy.',
+                        'Designed to amplify your sense of energize, boost concentration, and channel positive energy, this session helps you feel uplifted, inspired, and deeply connected to your inner energy.',
                     CTA: 'Play the session',
                 }
             },

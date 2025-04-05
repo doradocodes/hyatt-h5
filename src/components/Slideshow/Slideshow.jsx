@@ -3,7 +3,13 @@ import {useSpringCarousel} from "react-spring-carousel";
 import {useState} from "react";
 import classNames from "classnames";
 
-export default function Slideshow({ items = [], slideComponent, showIndicator = true, alignBottom = false }) {
+export default function Slideshow({
+                                      items = [],
+                                      slideComponent,
+                                      showIndicator = true,
+                                      alignBottom = false,
+                                      initialActiveItem = 0,
+                                  }) {
     const ComponentRender = slideComponent;
     const [activeSlide, setActiveSlide] = useState(0);
     const {
@@ -13,6 +19,7 @@ export default function Slideshow({ items = [], slideComponent, showIndicator = 
         slideToNextItem,
         slideToPrevItem,
     } = useSpringCarousel({
+        initialActiveItem: initialActiveItem,
         gutter: 15,
         items: items.map(item => ({
             id: item.id,

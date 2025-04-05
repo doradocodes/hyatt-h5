@@ -54,16 +54,16 @@ const VisualizerColors = {
       case SongIDs.BETA:
         return {
           barColors: [
-            '#318bd2', 
+            '#0072CE', 
             '#127cd1', 
             '#ffffff', 
             '#00a2cb',
-            '#42a1d4'
+            '#022d97'
           ],
           bgColors: [
-            '#318bd2', 
+            '#0072CE', 
             '#a9cfee', 
-            '#42a1d4'
+            '#022d97'
           ],
         };
 

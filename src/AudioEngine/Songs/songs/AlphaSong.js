@@ -15,7 +15,7 @@ export default class AlphaSong extends Song {
         ];
         alphaBgLoop.loopLength = "12m";
         alphaBgLoop.loopTotal = -1;
-        alphaBgLoop.db = -19; 
+        alphaBgLoop.db = -18; 
         this.instruments.push(alphaBgLoop);
 
 
@@ -34,7 +34,7 @@ export default class AlphaSong extends Song {
         alphaMindfullnessPad.velocityRange = 0.2;
         alphaMindfullnessPad.skipChance = 0.05; 
         alphaMindfullnessPad.noteChance = 0.7;
-        alphaMindfullnessPad.db = -12;
+        alphaMindfullnessPad.db = -14;
         this.instruments.push(alphaMindfullnessPad);
 
         const alphaJvAnalogPad = new Instrument("alphaJvAnalogPad", {"C3": "alpha/a_JV_analog_pad_H5.mp3"}, Instrument.TYPE_STANDARD );
@@ -50,7 +50,7 @@ export default class AlphaSong extends Song {
         alphaJvAnalogPad.velocityRange = 0.35;
         alphaJvAnalogPad.skipChance = 0.05;
         alphaJvAnalogPad.noteChance = 0.3;
-        alphaJvAnalogPad.db = 0;
+        alphaJvAnalogPad.db = -4;
         this.instruments.push(alphaJvAnalogPad);
 
 
@@ -61,7 +61,7 @@ export default class AlphaSong extends Song {
         alphaDreamBg.loopLength = "7m";
         alphaDreamBg.loopTotal = 1;
         alphaDreamBg.velocityRange = 0.3;
-        alphaDreamBg.db = -5;
+        alphaDreamBg.db = -6;
         this.instruments.push(alphaDreamBg);
 
 
@@ -72,8 +72,8 @@ export default class AlphaSong extends Song {
         ];
         alphaTangerineBg.loopLength = "19m";
         alphaTangerineBg.loopTotal = 1;
-        alphaTangerineBg.skipChance = 0.15;
-        alphaTangerineBg.db = -4;
+        alphaTangerineBg.skipChance = 0.1;
+        alphaTangerineBg.db = -6;
         this.instruments.push(alphaTangerineBg);
 
 
@@ -83,8 +83,8 @@ export default class AlphaSong extends Song {
         ];
         betaHarpBg.loopLength = "12m";
         betaHarpBg.loopTotal = 1;
-        betaHarpBg.velocityRange = 0.3;
-        betaHarpBg.db = 1;
+        betaHarpBg.velocityRange = 0.2;
+        betaHarpBg.db = 2;
         this.instruments.push(betaHarpBg);
 
 
@@ -103,9 +103,9 @@ export default class AlphaSong extends Song {
         alphaSoftKey.loopTotal = 1;
         alphaSoftKey.timingRange = 0.6;
         alphaSoftKey.velocityRange = 0.2;
-        alphaSoftKey.skipChance = 0.65; 
+        alphaSoftKey.skipChance = 0.45; 
         alphaSoftKey.noteChance = 0.9;
-        alphaSoftKey.db = -21;
+        alphaSoftKey.db = -17;
         this.instruments.push(alphaSoftKey);
 
 
@@ -120,9 +120,9 @@ export default class AlphaSong extends Song {
         alphaLoundBell.loopTotal = 1;
         alphaLoundBell.timingRange = 0.4;
         alphaLoundBell.velocityRange = 0.3;
-        alphaLoundBell.skipChance = 0.25; 
+        alphaLoundBell.skipChance = 0.2; 
         alphaLoundBell.noteChance = 0.9;
-        alphaLoundBell.db = -33;
+        alphaLoundBell.db = -30;
         this.instruments.push(alphaLoundBell);
 
 

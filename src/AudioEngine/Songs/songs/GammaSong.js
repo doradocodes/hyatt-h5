@@ -15,7 +15,7 @@ export default class GammaSong extends Song {
         ];
         gammaBgLoop.loopLength = "9m"; 
         gammaBgLoop.loopTotal = -1;
-        gammaBgLoop.db = -24; 
+        gammaBgLoop.db = -26; 
         this.instruments.push(gammaBgLoop);
 
         

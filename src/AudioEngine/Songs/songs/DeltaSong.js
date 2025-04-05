@@ -45,7 +45,7 @@ export default class DeltaSong extends Song {
         deltaSubBassNote.velocityRange = 0.3;
         deltaSubBassNote.noteChance = 0.5;
         deltaSubBassNote.skipChance = 0.3;
-        deltaSubBassNote.db = -5;
+        deltaSubBassNote.db = -10;
         this.instruments.push(deltaSubBassNote);
 
      
