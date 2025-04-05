@@ -150,9 +150,12 @@ export function MeditationSessionPage({ }) {
                     </div>
 
                 </div>
-                <Link to={"/share"}>
-                    <button className={styles.OutlineButton}>{copy[language].meditationSessionPage.CTA}</button>
-                </Link>
+                <button
+                    className={styles.OutlineButton}
+                    onClick={() => {
+                        window.location.href = '/share';
+                    }}
+                >{copy[language].meditationSessionPage.CTA}</button>
             </div>
             <div className={styles.Visualizer}>
                 {audioEngine && audioEngine.mainBus &&
