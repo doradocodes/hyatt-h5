@@ -4,7 +4,8 @@
     width: 100%;
     min-height: 60vh;
     background: white;
-    border-radius: 1rem;
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
 
     display: flex;
     flex-direction: column;
@@ -18,7 +19,7 @@
 }
 
 .BottomSheet[data-state="closed"] {
-    transform: translateY(100%);
+    transform: translateY(110%);
 }
 
 .Handle {
